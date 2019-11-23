@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:body>
+
+	<h2>Produtos</h2>
+	<h:form>
+	
+	<h:outputLabel value="Id" /><br />
+		<h:inputText value="#{produtoBean.produto.id}" disabled="true"/>
+		<br />
+
+		<h:outputLabel value="Descrição" /><br />
+		<h:inputText value="#{produtoBean.produto.descricao}" />
+		<br />
+
+
+		<h:outputLabel value="Quantidade" /><br />
+		<h:inputText value="#{produtoBean.produto.quantidade}" />
+		<br />
+
+		<h:outputLabel value="Peso" /><br />
+		<h:inputText value="#{produtoBean.produto.peso}" />
+		<br />
+
+		<h:outputLabel value="Unidade Medida" /><br />
+		<h:inputText value="#{produtoBean.produto.unidadeMedida}" />
+		<br />
+		<br />
+
+		<h:commandButton actionListener="#{produtoBean.salvarProduto()}"
+			value="Salvar" />
+		<h:commandButton style="margin-left: 20px;" actionListener="#{produtoBean.cancelar()}" value="Cancelar" />
+		<br/><br/>
+
+	</h:form>
+
+	<h:form>
+
+		<h:dataTable value="#{produtoBean.listarProdutos()}" var="o">
+
+			<h:column>
+				<!-- column header -->
+				<f:facet name="header">Id</f:facet>
+				<!-- row record -->
+    				#{o.id}
+    			</h:column>
+
+			<h:column>
+				<f:facet name="header">Descrição</f:facet>
+    				#{o.descricao}
+    			</h:column>
+
+			<h:column>
+				<f:facet name="header">Quantidade</f:facet>
+    				#{o.quantidade}
+    			</h:column>
+
+			<h:column>
+				<f:facet name="header">Peso</f:facet>
+    				#{o.peso}
+    			</h:column>
+			<h:column>
+				<f:facet name="header">Unidade Medida</f:facet>
+    				#{o.unidadeMedida}
+    			</h:column>
+			<h:column>
+				<f:facet name="header">Ações</f:facet>
+				<h:commandLink action="#{produtoBean.selecionaProduto(o)}"
+					value="Editar" />
+				<br></br>
+				<h:commandLink action="#{produtoBean.excluirProduto(o)}"
+					value="Excluir" />
+			</h:column>
+
+		</h:dataTable>
+
+	</h:form>
+
+</h:body>
+</html>
